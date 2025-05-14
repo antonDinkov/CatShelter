@@ -1,5 +1,6 @@
 const http = require('http');
 const { homeHandler } = require('./handlers/home');
+const { staticFileHandler } = require('./handlers/static');
 const port = 3000;
 
 const routes = {
@@ -10,13 +11,16 @@ const routes = {
 http.createServer((req, res) => {
     const route = routes[req.url];
     if (typeof route === 'function') {
-        homeHandler(res);
-    } else {
-        res.writeHead(404, {
-            'Content-Type': 'text/html'
-        });
-        res.write('404 Page not Found! ')
-        res.end();
+        route(res);
+        return;
+    } else if (staticFileHandler(req, res)) {
+        return;
     }
+    
+    res.writeHead(404, {
+        'Content-Type': 'text/plaint'
+    });
+    res.write('404 Page not Found! ')
+    res.end();
 
 }).listen(port);
