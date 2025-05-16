@@ -10,7 +10,7 @@ function staticFileHandler (req, res) {
         res.end();
 
         return true
-    } else if (req.url.endsWith('.ico')) {
+    } /* else if (req.url.endsWith('.ico')) {
         const data = readFile(req.url);
         console.log(req.url);
         
@@ -21,7 +21,7 @@ function staticFileHandler (req, res) {
         res.end();
 
         return true
-    }
+    } */
     return false;
 }
 
