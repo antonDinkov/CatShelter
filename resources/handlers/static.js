@@ -1,8 +1,11 @@
 const { readFile } = require("../util");
+const path = require('path');
 
 function staticFileHandler (req, res) {
     if (req.url.endsWith('.css')) {
-        const data = readFile(req.url);
+        const filePath = path.join(__dirname, '../../resources', req.url);
+        const data = readFile(filePath);
+
         res.writeHead(200, {
             'Content-Type': 'text/css'
         });
@@ -10,18 +13,7 @@ function staticFileHandler (req, res) {
         res.end();
 
         return true
-    } /* else if (req.url.endsWith('.ico')) {
-        const data = readFile(req.url);
-        console.log(req.url);
-        
-        res.writeHead(200, {
-            'Content-Type': 'image/x-icon'
-        });
-        res.write(data);
-        res.end();
-
-        return true
-    } */
+    }
     return false;
 }
 

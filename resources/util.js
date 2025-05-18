@@ -2,9 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function readFile (filePath) {
-    const fullPath = path.join('./', filePath);
-    
-    const data = fs.readFileSync(fullPath);
+    const data = fs.readFileSync(filePath);
     return data.toString();
 }
 

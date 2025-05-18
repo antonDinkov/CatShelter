@@ -1,5 +1,6 @@
 const { readFile } = require("../util");
 const cats = require('../data/cats.json'); //автоматично парсва json
+const path = require('path')
 
 function catFragment(cat) {
     return `
@@ -17,7 +18,8 @@ function catFragment(cat) {
 }
  
 function homeHandler(res) {
-    const template = readFile('./views/home/index.html');
+    const templatePath = path.join(__dirname, '../views/home/index.html')
+    const template = readFile(templatePath);
     res.writeHead(200, { 
         'Content-Type': 'text/html'
     });
