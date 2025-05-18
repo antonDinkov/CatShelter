@@ -1,4 +1,4 @@
-const { readTemplate } = require("../util");
+const { readTemplate, layout } = require("../util");
 const cats = require('../data/cats.json'); //автоматично парсва json
 const path = require('path')
 
@@ -17,7 +17,7 @@ function catFragment(cat) {
     `
 }
  
-async function homeHandler(res) {
+async function homeHandler(req, res) {
     /* const templatePath = path.join(__dirname, '../views/home/index.html') */
     const template = await readTemplate('home/index');
     res.writeHead(200, { 
@@ -26,10 +26,9 @@ async function homeHandler(res) {
 
     const html = template.replace('%%catContent%%', cats.map(catFragment).join('\n'));
 
-    res.write(html);
+    res.write(await layout(html, true));
     res.end();
 }
-
 
 module.exports = {
     homeHandler
