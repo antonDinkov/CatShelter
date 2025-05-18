@@ -1,4 +1,4 @@
-const { readFile } = require("../util");
+const { readTemplate } = require("../util");
 const cats = require('../data/cats.json'); //автоматично парсва json
 const path = require('path')
 
@@ -17,9 +17,9 @@ function catFragment(cat) {
     `
 }
  
-function homeHandler(res) {
-    const templatePath = path.join(__dirname, '../views/home/index.html')
-    const template = readFile(templatePath);
+async function homeHandler(res) {
+    /* const templatePath = path.join(__dirname, '../views/home/index.html') */
+    const template = await readTemplate('home/index');
     res.writeHead(200, { 
         'Content-Type': 'text/html'
     });

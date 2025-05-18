@@ -20,7 +20,7 @@ http.createServer((req, res) => {
     res.writeHead(404, {
         'Content-Type': 'text/plaint'
     });
-    res.write('404 Page not Found! ')
+    res.write('404 Page not Found!')
     res.end();
 
 }).listen(port);
