@@ -18,7 +18,7 @@ function catFragment(cat) {
  
 function homeHandler(res) {
     const template = readFile('./views/home/index.html');
-    res.writeHead(200, {
+    res.writeHead(200, { 
         'Content-Type': 'text/html'
     });
 
